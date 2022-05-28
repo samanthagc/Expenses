@@ -17,28 +17,31 @@
             android:layout_height="match_parent"
             android:textAlignment="gravity"
             android:textColor="@android:color/black"
-            android:textSize="42sp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            tools:text="🚗" />
+            android:textSize="@dimen/default_42sp"
+            android:layout_marginStart="@dimen/default_8dp"
+            android:layout_marginEnd="@dimen/default_8dp"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:layout_marginBottom="@dimen/default_16dp"
+            android:importantForAccessibility="no"
+            tools:text="@string/icon_car" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/default_10dp"
+            android:orientation="vertical"
+            android:importantForAccessibility="yes"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/tv_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="@dimen/default_24sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                tools:text="R$ 13,50"/>
+                android:layout_marginTop="@dimen/default_8dp"
+                tools:text="@string/sample_value_item"/>
 
             <TextView
                 android:id="@+id/tv_origin"
@@ -47,14 +50,14 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintHorizontal_bias="0.0"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
-                tools:text="Uber"/>
+                android:textSize="@dimen/default_18sp"
+                tools:text="@string/sample_origin_item"/>
 
             <TextView
                 android:id="@+id/tv_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="janeiro"/>
+                tools:text="@string/month_jan"/>
 
         </LinearLayout>
     </LinearLayout>

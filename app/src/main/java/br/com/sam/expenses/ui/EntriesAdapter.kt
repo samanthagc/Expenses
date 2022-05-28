@@ -24,7 +24,7 @@ class EntriesAdapter(private val entries: List<Entry>) :
 
     override fun getItemCount(): Int = entries.size
 
-    inner class EntriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class EntriesViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val icon = view.findViewById<TextView>(R.id.tv_icon)
         private val value = view.findViewById<TextView>(R.id.tv_value)
@@ -33,35 +33,35 @@ class EntriesAdapter(private val entries: List<Entry>) :
 
         fun bindView(entry: Entry) {
             icon.text = getIcon(entry.category ?: 7)
-            value.text = entry.value?.toBrazilianCurrencyFormat() ?: "-"
-            origin.text = entry.origin ?: "-"
+            value.text = entry.value?.toBrazilianCurrencyFormat() ?: view.context.getString(R.string.empty_value)
+            origin.text = entry.origin ?: view.context.getString(R.string.empty_value)
             month.text = getMonth(entry.month ?: 13)
         }
 
         private fun getIcon(category: Int) = when (category) {
-            1 -> "🚗"
-            2 -> "🎮"
-            3 -> "💳"
-            4 -> "🛠"
-            5 -> "🍴"
-            6 -> "🛒"
-            else -> "💳"
+            1 -> view.context.getString(R.string.icon_car)
+            2 -> view.context.getString(R.string.icon_game)
+            3 -> view.context.getString(R.string.icon_card)
+            4 -> view.context.getString(R.string.icon_tools)
+            5 -> view.context.getString(R.string.icon_restaurant)
+            6 -> view.context.getString(R.string.icon_market)
+            else -> view.context.getString(R.string.icon_card)
         }
 
         private fun getMonth(month: Int) = when (month) {
-            1 -> "janeiro"
-            2 -> "fevereiro"
-            3 -> "março"
-            4 -> "abril"
-            5 -> "maio"
-            6 -> "junho"
-            7 -> "julho"
-            8 -> "agosto"
-            9 -> "setembro"
-            10 -> "outubro"
-            11 -> "novembro"
-            12 -> "dezembro"
-            else -> "-"
+            1 -> view.context.getString(R.string.month_jan)
+            2 -> view.context.getString(R.string.month_feb)
+            3 -> view.context.getString(R.string.month_mar)
+            4 -> view.context.getString(R.string.month_apr)
+            5 -> view.context.getString(R.string.month_may)
+            6 -> view.context.getString(R.string.month_jun)
+            7 -> view.context.getString(R.string.month_jul)
+            8 -> view.context.getString(R.string.month_aug)
+            9 -> view.context.getString(R.string.month_sep)
+            10 -> view.context.getString(R.string.month_oct)
+            11 -> view.context.getString(R.string.month_nov)
+            12 -> view.context.getString(R.string.month_dec)
+            else -> view.context.getString(R.string.empty_value)
         }
     }
 }
