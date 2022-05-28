@@ -1,4 +1,4 @@
-package br.com.sam.expenses.constants
+package br.com.sam.expenses.commons
 
 object Constants {
     const val CAR = 1

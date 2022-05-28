@@ -8,8 +8,8 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
-import br.com.sam.expenses.feature.detailedentries.DetailedEntriesActivity
-import br.com.sam.expenses.feature.entries.api.EntryApi
+import br.com.sam.expenses.commons.ExpensesApi
+import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity
 import br.com.sam.expenses.feature.entries.model.Entry
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,7 +41,7 @@ class EntriesActivity : AppCompatActivity() {
 
     private fun callApi() {
 
-        val call = EntryApi().entryService().fetchEntries()
+        val call = ExpensesApi().entryService().fetchEntries()
 
         call.enqueue(object: Callback<List<Entry>?> {
             override fun onFailure(call: Call<List<Entry>?>, t: Throwable) {

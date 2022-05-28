@@ -1,4 +1,4 @@
-package br.com.sam.expenses.feature.entries.api
+package br.com.sam.expenses.feature.entries.service
 
 import br.com.sam.expenses.feature.entries.model.Entry
 import retrofit2.Call

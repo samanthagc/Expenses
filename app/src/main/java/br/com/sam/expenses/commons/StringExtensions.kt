@@ -1,4 +1,4 @@
-package br.com.sam.expenses.extensions
+package br.com.sam.expenses.commons
 
 internal fun Double.toBrazilianCurrencyFormat(): String {
     return "R$ " + this.toString().replace(".", ",")

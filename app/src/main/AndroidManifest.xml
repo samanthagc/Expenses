@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Expenses">
-        <activity android:name=".feature.detailedentries.DetailedEntriesActivity"/>
+        <activity android:name=".feature.detailedentries.ui.DetailedEntriesActivity"/>
         <activity
             android:name=".feature.entries.ui.EntriesActivity"
             android:exported="true">
