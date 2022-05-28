@@ -31,9 +31,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/title_return"
                 android:textSize="24sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -41,9 +41,9 @@
                 tools:text="R$ 13,50"/>
 
             <TextView
+                android:id="@+id/tv_origin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/body_return"
                 app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintHorizontal_bias="0.0"
                 android:textColor="@android:color/black"
@@ -51,7 +51,7 @@
                 tools:text="Uber"/>
 
             <TextView
-                android:id="@+id/user_id_return"
+                android:id="@+id/tv_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="janeiro"/>
