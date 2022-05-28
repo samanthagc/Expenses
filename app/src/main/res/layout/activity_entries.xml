@@ -4,13 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.EntriesActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.entries.ui.EntriesActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/entries_title"
+        android:textSize="@dimen/default_42sp"
+        android:layout_margin="@dimen/default_8dp"
+        android:textColor="@color/purple_500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rv_entries"/>
+
+    <Button
+        android:id="@+id/bt_detailed"
+        android:layout_width="54dp"
+        android:layout_height="64dp"
+        android:layout_margin="@dimen/default_8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/folder_icon"
+        android:textSize="@dimen/default_18sp"
+        android:contentDescription="@string/detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toEndOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_entries"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/entry_item"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_16dp"
+        tools:listitem="@layout/entry_item"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintBaseline_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

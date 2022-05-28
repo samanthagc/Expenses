@@ -1,4 +1,4 @@
-package br.com.sam.expenses.model
+package br.com.sam.expenses.feature.entries.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -1,13 +1,16 @@
-package br.com.sam.expenses.ui
+package br.com.sam.expenses.feature.entries.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
-import br.com.sam.expenses.api.EntryApi
-import br.com.sam.expenses.model.Entry
+import br.com.sam.expenses.feature.detailedentries.DetailedEntriesActivity
+import br.com.sam.expenses.feature.entries.api.EntryApi
+import br.com.sam.expenses.feature.entries.model.Entry
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,10 +21,22 @@ class EntriesActivity : AppCompatActivity() {
         findViewById(R.id.rv_entries)
     }
 
+    private val detailButton: Button by lazy {
+        findViewById(R.id.bt_detailed)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entries)
+        setupViews()
         callApi()
+    }
+
+    private fun setupViews() {
+        detailButton.setOnClickListener {
+            val intent = Intent(this, DetailedEntriesActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun callApi() {
