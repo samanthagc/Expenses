@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/default_8dp">
+
+        <TextView
+            android:id="@+id/tv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/default_18sp"
+            android:importantForAccessibility="no"
+            tools:text="@string/icon_car" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="@dimen/default_8dp"
+            android:layout_marginTop="@dimen/default_4dp"
+            tools:text="@string/sample_category_item"/>
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_8dp"
+            android:layout_marginTop="@dimen/default_4dp"
+            android:gravity="end"
+            android:textSize="@dimen/default_18sp"
+            tools:text="@string/sample_value_item" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

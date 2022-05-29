@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Expenses">
+        <activity android:name=".feature.detailedentries.ui.DetailedEntriesActivity"/>
         <activity
-            android:name=".ui.EntriesActivity"
-            android:exported="true"
-            >
+            android:name=".feature.entries.ui.EntriesActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

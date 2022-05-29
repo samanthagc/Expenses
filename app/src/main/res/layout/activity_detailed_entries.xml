@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_50"
+    android:paddingBottom="@dimen/default_16dp"
+    tools:context=".feature.detailedentries.ui.DetailedEntriesActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_16dp"
+                android:layout_marginTop="@dimen/default_16dp"
+                android:layout_marginEnd="@dimen/default_8dp"
+                android:layout_marginBottom="@dimen/default_8dp"
+                android:text="@string/detailed_entries_title"
+                android:textColor="@color/purple_500"
+                android:textSize="@dimen/default_36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_16dp"
+                android:layout_marginTop="@dimen/default_16dp"
+                android:layout_marginEnd="@dimen/default_8dp"
+                android:layout_marginBottom="@dimen/default_8dp"
+                android:text="@string/category_title"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/default_24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_month_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_16dp"
+                android:layout_marginTop="@dimen/default_16dp"
+                android:layout_marginEnd="@dimen/default_8dp"
+                android:layout_marginBottom="@dimen/default_8dp"
+                android:text="@string/month_title"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/default_24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_categories" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_16dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_title"
+                tools:itemCount="5"
+                tools:listitem="@layout/category_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_months"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_16dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_month_title"
+                tools:itemCount="12"
+                tools:listitem="@layout/month_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">Expenses</string>
+    <string name="app_name">Despesas</string>
 
     <string name="icon_car">🚗</string>
-    <string name="icon_game">🎮</string>
-    <string name="icon_card">💳</string>
+    <string name="icon_internet">🌐</string>
+    <string name="icon_care">🧼</string>
     <string name="icon_tools">🛠</string>
     <string name="icon_restaurant">🍴</string>
     <string name="icon_market">🛒</string>
+    <string name="icon_card">💳</string>
 
     <string name="month_jan">janeiro</string>
     <string name="month_feb">fevereiro</string>
@@ -22,7 +23,17 @@
     <string name="month_dec">dezembro</string>
 
     <string name="empty_value">-</string>
+
     <string name="sample_value_item">R$ 13,50</string>
     <string name="sample_origin_item">Uber</string>
+    <string name="sample_category_item">Transporte</string>
+    <string name="sample_month_item">Janeiro</string>
+
+    <string name="detail">Detalhar</string>
+    <string name="folder_icon">📂</string>
+    <string name="entries_title">Lançamentos</string>
+    <string name="detailed_entries_title">Detalhes</string>
+    <string name="category_title">por categoria</string>
+    <string name="month_title">por mês</string>
 
 </resources>

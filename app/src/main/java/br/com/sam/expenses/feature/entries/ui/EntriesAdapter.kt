@@ -1,4 +1,4 @@
-package br.com.sam.expenses.ui
+package br.com.sam.expenses.feature.entries.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
-import br.com.sam.expenses.extensions.toBrazilianCurrencyFormat
-import br.com.sam.expenses.model.Entry
+import br.com.sam.expenses.commons.Constants.CAR
+import br.com.sam.expenses.commons.Constants.CARD
+import br.com.sam.expenses.commons.Constants.HEATH_AND_CARE
+import br.com.sam.expenses.commons.Constants.INTERNET
+import br.com.sam.expenses.commons.Constants.MARKET
+import br.com.sam.expenses.commons.Constants.NULL_MONTH
+import br.com.sam.expenses.commons.Constants.RESTAURANT
+import br.com.sam.expenses.commons.Constants.TOOLS
+import br.com.sam.expenses.commons.toBrazilianCurrencyFormat
+import br.com.sam.expenses.feature.detailedentries.utils.MonthsStub.getMonth
+import br.com.sam.expenses.feature.entries.model.Entry
 
 class EntriesAdapter(private val entries: List<Entry>) :
     RecyclerView.Adapter<EntriesAdapter.EntriesViewHolder>() {
@@ -32,36 +41,20 @@ class EntriesAdapter(private val entries: List<Entry>) :
         private val month = view.findViewById<TextView>(R.id.tv_month)
 
         fun bindView(entry: Entry) {
-            icon.text = getIcon(entry.category ?: 7)
+            icon.text = getIcon(entry.category ?: CARD)
             value.text = entry.value?.toBrazilianCurrencyFormat() ?: view.context.getString(R.string.empty_value)
             origin.text = entry.origin ?: view.context.getString(R.string.empty_value)
-            month.text = getMonth(entry.month ?: 13)
+            month.text = getMonth( view.context, entry.month ?: NULL_MONTH)
         }
 
         private fun getIcon(category: Int) = when (category) {
-            1 -> view.context.getString(R.string.icon_car)
-            2 -> view.context.getString(R.string.icon_game)
-            3 -> view.context.getString(R.string.icon_card)
-            4 -> view.context.getString(R.string.icon_tools)
-            5 -> view.context.getString(R.string.icon_restaurant)
-            6 -> view.context.getString(R.string.icon_market)
+            CAR -> view.context.getString(R.string.icon_car)
+            INTERNET -> view.context.getString(R.string.icon_internet)
+            HEATH_AND_CARE -> view.context.getString(R.string.icon_care)
+            TOOLS -> view.context.getString(R.string.icon_tools)
+            RESTAURANT -> view.context.getString(R.string.icon_restaurant)
+            MARKET -> view.context.getString(R.string.icon_market)
             else -> view.context.getString(R.string.icon_card)
-        }
-
-        private fun getMonth(month: Int) = when (month) {
-            1 -> view.context.getString(R.string.month_jan)
-            2 -> view.context.getString(R.string.month_feb)
-            3 -> view.context.getString(R.string.month_mar)
-            4 -> view.context.getString(R.string.month_apr)
-            5 -> view.context.getString(R.string.month_may)
-            6 -> view.context.getString(R.string.month_jun)
-            7 -> view.context.getString(R.string.month_jul)
-            8 -> view.context.getString(R.string.month_aug)
-            9 -> view.context.getString(R.string.month_sep)
-            10 -> view.context.getString(R.string.month_oct)
-            11 -> view.context.getString(R.string.month_nov)
-            12 -> view.context.getString(R.string.month_dec)
-            else -> view.context.getString(R.string.empty_value)
         }
     }
 }
