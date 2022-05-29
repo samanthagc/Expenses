@@ -1,20 +1,18 @@
 package br.com.sam.expenses.feature.detailedentries.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
-import br.com.sam.expenses.commons.ExpensesApi
+import br.com.sam.expenses.commons.providers.provideCategoryRepository
 import br.com.sam.expenses.feature.detailedentries.model.Category
 import br.com.sam.expenses.feature.detailedentries.model.CategoryDTO
 import br.com.sam.expenses.feature.detailedentries.utils.MonthsStub.getMonths
+import br.com.sam.expenses.feature.detailedentries.viewmodel.DetailedEntriesViewModel
 import br.com.sam.expenses.feature.entries.model.Entry
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailedEntriesActivity : AppCompatActivity() {
 
@@ -33,7 +31,7 @@ class DetailedEntriesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detailed_entries)
         configToolbar()
         getBundle()
-        callApi()
+        fetchCategories()
         setupMonthsAdapter()
     }
 
@@ -56,24 +54,26 @@ class DetailedEntriesActivity : AppCompatActivity() {
         entriesData = args!!.getSerializable(ENTRIES_EXTRA) as List<Entry>? ?: listOf()
     }
 
-    private fun callApi() {
+    private fun fetchCategories() {
 
-        val call = ExpensesApi().categoryService().fetchCategories()
+        val viewModel: DetailedEntriesViewModel =
+            DetailedEntriesViewModel.DetailViewModelFactory(provideCategoryRepository())
+                .create(DetailedEntriesViewModel::class.java)
 
-        call.enqueue(object: Callback<List<CategoryDTO>?> {
-            override fun onFailure(call: Call<List<CategoryDTO>?>, t: Throwable) {
-                Log.e("Category API Error", t.message.toString())
-            }
-
-            override fun onResponse(
-                call: Call<List<CategoryDTO>?>,
-                response: Response<List<CategoryDTO>?>
-            ) {
-                response.body()?.let {
-                    setupCategoriesAdapter(it)
-                }
+        viewModel.categoriesLiveData.observe(this, { entryList ->
+            entryList?.let {
+                setupCategoriesAdapter(it)
             }
         })
+
+        viewModel.errorLiveData.observe(this, { error ->
+            error?.let { message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+        viewModel.getCategories()
     }
 
     private fun setupCategoriesAdapter(data: List<CategoryDTO>) {

@@ -2,20 +2,18 @@ package br.com.sam.expenses.feature.entries.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
-import br.com.sam.expenses.commons.ExpensesApi
 import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity
 import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity.Companion.DETAILS_BUNDLE
 import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity.Companion.ENTRIES_EXTRA
 import br.com.sam.expenses.feature.entries.model.Entry
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import br.com.sam.expenses.commons.providers.provideEntryRepository
+import br.com.sam.expenses.feature.entries.viewmodel.EntriesViewModel
 import java.io.Serializable
 
 class EntriesActivity : AppCompatActivity() {
@@ -31,28 +29,29 @@ class EntriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entries)
-        callApi()
+        fetchEntries()
     }
 
-    private fun callApi() {
+    private fun fetchEntries() {
 
-        val call = ExpensesApi().entryService().fetchEntries()
+        val viewModel: EntriesViewModel =
+            EntriesViewModel.EntriesViewModelFactory(provideEntryRepository())
+                .create(EntriesViewModel::class.java)
 
-        call.enqueue(object: Callback<List<Entry>?> {
-            override fun onFailure(call: Call<List<Entry>?>, t: Throwable) {
-                Log.e("Entries API Error", t.message.toString())
-            }
-
-            override fun onResponse(
-                call: Call<List<Entry>?>,
-                response: Response<List<Entry>?>
-            ) {
-                response.body()?.let {
-                    setupAdapter(it)
-                    setupViews(it)
-                }
+        viewModel.entriesLiveData.observe(this, { entryList ->
+            entryList?.let { entries ->
+                setupAdapter(entries)
+                setupViews(entries)
             }
         })
+
+        viewModel.errorLiveData.observe(this, { error ->
+            error?.let { message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        viewModel.getEntries()
     }
 
     private fun setupAdapter(data: List<Entry>) {

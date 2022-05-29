@@ -1,4 +1,4 @@
-package br.com.sam.expenses.commons
+package br.com.sam.expenses.commons.api
 
 import br.com.sam.expenses.feature.detailedentries.service.CategoryService
 import br.com.sam.expenses.feature.entries.service.EntryService
