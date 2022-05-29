@@ -24,7 +24,7 @@ class MonthAdapter (private val months: List<Month>) :
 
     override fun getItemCount(): Int = months.size
 
-    inner class MonthViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class MonthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val name = view.findViewById<TextView>(R.id.tv_month)
         private val value = view.findViewById<TextView>(R.id.tv_value)

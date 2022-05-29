@@ -16,7 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class DetailedEntriesActivity : AppCompatActivity() {
 
     private lateinit var entriesData: List<Entry>
