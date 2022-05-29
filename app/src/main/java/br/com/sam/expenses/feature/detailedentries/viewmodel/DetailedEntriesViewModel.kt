@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.sam.expenses.commons.api.CategoriesResponseState
 import br.com.sam.expenses.feature.detailedentries.model.CategoryDTO
+import br.com.sam.expenses.feature.detailedentries.repository.CategoryDataSource
 import br.com.sam.expenses.feature.detailedentries.repository.CategoryRepository
 
-class DetailedEntriesViewModel(private val repository: CategoryRepository) : ViewModel() {
+class DetailedEntriesViewModel(private val dataSource: CategoryRepository) : ViewModel() {
 
     private val categoryList: MutableLiveData<List<CategoryDTO>> = MutableLiveData()
     private val errorMessage: MutableLiveData<String> = MutableLiveData()
@@ -17,7 +18,7 @@ class DetailedEntriesViewModel(private val repository: CategoryRepository) : Vie
     val errorLiveData: LiveData<String> = errorMessage
 
     fun getCategories() {
-        repository.fetchCategories { result ->
+        dataSource.fetchCategories { result ->
             when (result) {
                 is CategoriesResponseState.Success -> {
                     categoryList.value = result.categories
@@ -30,10 +31,10 @@ class DetailedEntriesViewModel(private val repository: CategoryRepository) : Vie
     }
 
 
-    class DetailViewModelFactory(private val repository: CategoryRepository) :
+    class DetailViewModelFactory(private val dataSource: CategoryDataSource) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return DetailedEntriesViewModel(repository) as T
+            return DetailedEntriesViewModel(dataSource) as T
         }
     }
 }

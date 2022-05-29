@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.sam.expenses.commons.api.EntriesResponseState
 import br.com.sam.expenses.feature.entries.model.Entry
+import br.com.sam.expenses.feature.entries.repository.EntryDataSource
 import br.com.sam.expenses.feature.entries.repository.EntryRepository
 
-class EntriesViewModel(private val repository: EntryRepository) : ViewModel() {
+class EntriesViewModel(private val dataSource: EntryRepository) : ViewModel() {
 
     private val entryList: MutableLiveData<List<Entry>> = MutableLiveData()
     private val errorMessage: MutableLiveData<String> = MutableLiveData()
@@ -17,7 +18,7 @@ class EntriesViewModel(private val repository: EntryRepository) : ViewModel() {
     val errorLiveData: LiveData<String> = errorMessage
 
     fun getEntries() {
-        repository.fetchEntries { result ->
+        dataSource.fetchEntries { result ->
             when (result) {
                 is EntriesResponseState.Success -> {
                     entryList.value = result.entries
@@ -30,10 +31,10 @@ class EntriesViewModel(private val repository: EntryRepository) : ViewModel() {
     }
 
 
-    class EntriesViewModelFactory(private val repository: EntryRepository) :
+    class EntriesViewModelFactory(private val dataSource: EntryDataSource) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return EntriesViewModel(repository) as T
+            return EntriesViewModel(dataSource) as T
         }
     }
 }
