@@ -27,6 +27,7 @@ import br.com.sam.expenses.commons.Constants.RESTAURANT
 import br.com.sam.expenses.commons.Constants.SEP
 import br.com.sam.expenses.commons.Constants.TOOLS
 import br.com.sam.expenses.commons.toBrazilianCurrencyFormat
+import br.com.sam.expenses.feature.detailedentries.utils.MonthsStub.getMonth
 import br.com.sam.expenses.feature.entries.model.Entry
 
 class EntriesAdapter(private val entries: List<Entry>) :
@@ -55,7 +56,7 @@ class EntriesAdapter(private val entries: List<Entry>) :
             icon.text = getIcon(entry.category ?: CARD)
             value.text = entry.value?.toBrazilianCurrencyFormat() ?: view.context.getString(R.string.empty_value)
             origin.text = entry.origin ?: view.context.getString(R.string.empty_value)
-            month.text = getMonth(entry.month ?: NULL_MONTH)
+            month.text = getMonth( view.context, entry.month ?: NULL_MONTH)
         }
 
         private fun getIcon(category: Int) = when (category) {
@@ -66,22 +67,6 @@ class EntriesAdapter(private val entries: List<Entry>) :
             RESTAURANT -> view.context.getString(R.string.icon_restaurant)
             MARKET -> view.context.getString(R.string.icon_market)
             else -> view.context.getString(R.string.icon_card)
-        }
-
-        private fun getMonth(month: Int) = when (month) {
-            JAN -> view.context.getString(R.string.month_jan)
-            FEB -> view.context.getString(R.string.month_feb)
-            MAR -> view.context.getString(R.string.month_mar)
-            APR -> view.context.getString(R.string.month_apr)
-            MAY -> view.context.getString(R.string.month_may)
-            JUN -> view.context.getString(R.string.month_jun)
-            JUL -> view.context.getString(R.string.month_jul)
-            AUG -> view.context.getString(R.string.month_aug)
-            SEP -> view.context.getString(R.string.month_sep)
-            OCT -> view.context.getString(R.string.month_oct)
-            NOV -> view.context.getString(R.string.month_nov)
-            DEC -> view.context.getString(R.string.month_dec)
-            else -> view.context.getString(R.string.empty_value)
         }
     }
 }

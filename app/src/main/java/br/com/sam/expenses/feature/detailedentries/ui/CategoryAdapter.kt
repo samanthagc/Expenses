@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
 import br.com.sam.expenses.commons.Constants
+import br.com.sam.expenses.commons.toBrazilianCurrencyFormat
 import br.com.sam.expenses.feature.detailedentries.model.Category
 
 class CategoryAdapter(private val categories: List<Category>) :
@@ -31,9 +32,9 @@ class CategoryAdapter(private val categories: List<Category>) :
         private val value = view.findViewById<TextView>(R.id.tv_value)
 
         fun bindView(category: Category) {
-            icon.text = getIcon(category.id ?: Constants.CARD)
-            name.text = category.name ?: view.context.getString(R.string.empty_value)
-            value.text = "RS 1000,00"
+            icon.text = getIcon(category.id )
+            name.text = category.name
+            value.text = category.amout.toBrazilianCurrencyFormat()
         }
 
         private fun getIcon(category: Int) = when (category) {

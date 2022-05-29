@@ -23,4 +23,7 @@ object Constants {
     const val DEC = 12
     const val NULL_MONTH = 13
 
+    const val PT = "pt"
+    const val BR = "BR"
+
 }
