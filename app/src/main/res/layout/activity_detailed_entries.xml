@@ -8,12 +8,16 @@
     tools:context=".feature.detailedentries.ui.DetailedEntriesActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/detailed_entries_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/default_36sp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginBottom="@dimen/default_8dp"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_8dp"
+        android:textColor="@color/purple_500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

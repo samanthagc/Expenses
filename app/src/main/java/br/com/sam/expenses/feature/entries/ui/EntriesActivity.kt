@@ -1,19 +1,23 @@
 package br.com.sam.expenses.feature.entries.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.sam.expenses.R
 import br.com.sam.expenses.commons.ExpensesApi
 import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity
+import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity.Companion.DETAILS_BUNDLE
+import br.com.sam.expenses.feature.detailedentries.ui.DetailedEntriesActivity.Companion.ENTRIES_EXTRA
 import br.com.sam.expenses.feature.entries.model.Entry
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 
 class EntriesActivity : AppCompatActivity() {
 
@@ -28,15 +32,7 @@ class EntriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entries)
-        setupViews()
         callApi()
-    }
-
-    private fun setupViews() {
-        detailButton.setOnClickListener {
-            val intent = Intent(this, DetailedEntriesActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun callApi() {
@@ -54,14 +50,25 @@ class EntriesActivity : AppCompatActivity() {
             ) {
                 response.body()?.let {
                     setupAdapter(it)
+                    setupViews(it)
                 }
             }
         })
     }
 
-    private fun setupAdapter(res: List<Entry>) {
+    private fun setupAdapter(data: List<Entry>) {
         entriesList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        entriesList.adapter = EntriesAdapter(res)
+        entriesList.adapter = EntriesAdapter(data)
+    }
+
+    private fun setupViews(data: List<Entry>) {
+        detailButton.setOnClickListener {
+            val intent = Intent(this, DetailedEntriesActivity::class.java)
+            val args = Bundle()
+            args.putSerializable(ENTRIES_EXTRA, data as Serializable)
+            intent.putExtra(DETAILS_BUNDLE, args)
+            startActivity(intent)
+        }
     }
 
 }

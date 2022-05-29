@@ -28,6 +28,6 @@
     <string name="detail">Detalhar</string>
     <string name="folder_icon">📂</string>
     <string name="entries_title">Lançamentos</string>
-    <string name="detailed_entries_title">Lançamentos Detalhados</string>
+    <string name="detailed_entries_title">Detalhes</string>
 
 </resources>
